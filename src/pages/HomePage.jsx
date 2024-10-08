@@ -6,29 +6,26 @@ import Cards from '../components/Cards';
 const HomePage = () => {
   return (
     <>
-    <div className="bg-white text-gray-200 min-h-screen flex items-center justify-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-        {/* Left side - Quote and Description */}
-        <div className="md:w-1/2 space-y-4 text-left">
-          <h1 className="text-5xl font-bold text-green-400">
-          How big is your environmental footprint?
-          </h1>
-          <p className="text-lg text-black">
-            Embrace the journey of building your own path, one step at a time.
-          </p>
-        </div>
+<div className="relative h-[50vh] bg-[url('/hero.jpg')] bg-[position:60px_0px] bg-center bg-no-repeat bg-[length:1000px_500px]">
+  
+  <div className="absolute inset-0 opacity-80"></div>
 
-        {/* Right side - Image */}
-        <div className="md:w-3/4">
-          <img 
-            src="/earth.jpeg" 
-            alt="Inspiration" 
-            className="rounded-lg shadow-lg"
-          />
-        </div>
+  <div className="relative z-10 flex row">
+     <div className="top flex flex-row justify-end w-full">
+      <div className="cntnt text-[80px]  text-black flex-col flex  mt-12 mr-20">
+      <p className=' font-black mr-10 '>How big is your </p>
+      <p className=' font-black ml-36 '> environmental </p>
+      <p className=' font-black ml-64 '> footprint ?</p>
       </div>
-    </div>
-    <Nav/>
+        
+        
+     </div>
+  </div>
+  <p className='text-center mt-20 font-bold text-[#32CD32] text-3xl'> Embrace the journey of building your own path, one step at a time</p>
+  <Nav/>
+</div>
+
+    
     <Cards/>
     </>
   );
