@@ -11,7 +11,7 @@ const Cards = () => {
         <h2 className="text-2xl font-bold mb-2">Calculate</h2>
         <p className="mb-4">Use this tool to calculate your carbon footprint and understand your impact.</p>
         <button className="bg-black text-lime-200 py-2 px-4 rounded-lg hover:bg-gray-800 transition-all duration-300">
-          Get Started
+        <Link to='/Calculate'>Get Started</Link>
         </button>
       </div>
 
