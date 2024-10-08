@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Cards = () => {
   return (
-    <div className="flex justify-center items-center gap-4 p-4 bg-white h-screen">
+    <div className="flex justify-center items-center gap-4 p-4 mt-20  h-screen">
       <div className="w-80 bg-lime-200 text-black rounded-lg shadow-lg p-6 flex-shrink-0">
         <div className="flex items-center justify-center mb-4">
           <img src="/logo-calculate.png" alt="Calculate" className="w-12 h-12" />
