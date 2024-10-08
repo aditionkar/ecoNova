@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Cards = () => {
   return (
@@ -21,7 +22,7 @@ const Cards = () => {
         <h2 className="text-2xl font-bold mb-2">Get Credits</h2>
         <p className="mb-4">Earn credits by participating in eco-friendly activities and track your progress.</p>
         <button className="bg-black text-lime-200 py-2 px-4 rounded-lg hover:bg-gray-800 transition-all duration-300">
-          Learn More
+        <Link to="/Credits">Learn More</Link>
         </button>
       </div>
 

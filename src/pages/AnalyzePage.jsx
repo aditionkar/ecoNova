@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Chart, CategoryScale, LinearScale, BarController, BarElement, PieController, ArcElement, Tooltip, Legend } from 'chart.js';
 import 'tailwindcss/tailwind.css';
 import { Chart as ChartJS } from 'chart.js';
@@ -9,14 +9,17 @@ Chart.register(CategoryScale, LinearScale, BarController, BarElement, PieControl
 const AnalyzePage = () => {
   const [footprintData, setFootprintData] = useState(null);
   const [highestCategory, setHighestCategory] = useState('');
+  
+  const barChartRef = useRef(null); // Reference to store the bar chart instance
+  const pieChartRef = useRef(null); // Reference to store the pie chart instance
 
   const fetchFootprintData = async () => {
     try {
       const response = await fetch('http://localhost:8080/api/footprints/all', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
 
       if (!response.ok) {
@@ -26,7 +29,7 @@ const AnalyzePage = () => {
       const data = await response.json();
       const mostRecentItem = data[data.length - 1];
       setFootprintData(mostRecentItem);
-      
+
       // Determine the highest category
       const categories = {
         home: mostRecentItem.homeFootprint || 0,
@@ -35,8 +38,8 @@ const AnalyzePage = () => {
         food: mostRecentItem.foodFootprint || 0,
         flight: mostRecentItem.flightFootprint || 0,
       };
-      
-      const highest = Object.keys(categories).reduce((a, b) => categories[a] > categories[b] ? a : b);
+
+      const highest = Object.keys(categories).reduce((a, b) => (categories[a] > categories[b] ? a : b));
       setHighestCategory(highest);
 
     } catch (error) {
@@ -51,10 +54,19 @@ const AnalyzePage = () => {
   useEffect(() => {
     if (!footprintData) return;
 
+    // Destroy existing charts before creating new ones
+    if (barChartRef.current) {
+      barChartRef.current.destroy();
+    }
+    if (pieChartRef.current) {
+      pieChartRef.current.destroy();
+    }
+
     const ctxBar = document.getElementById('barChart').getContext('2d');
     const ctxPie = document.getElementById('pieChart').getContext('2d');
 
-    new ChartJS(ctxBar, {
+    // Create new bar chart instance and save it in ref
+    barChartRef.current = new ChartJS(ctxBar, {
       type: 'bar',
       data: {
         labels: ['Home', 'Private Transport', 'Public Transport', 'Food', 'Flight'],
@@ -65,41 +77,43 @@ const AnalyzePage = () => {
             footprintData.privateTransportFootprint || 0,
             footprintData.publicTransportFootprint || 0,
             footprintData.foodFootprint || 0,
-            footprintData.flightFootprint || 0
+            footprintData.flightFootprint || 0,
           ],
           backgroundColor: [
-            'rgba(0, 255, 0, 0.5)', // Home (Green)
-            'rgba(0, 200, 0, 0.5)', // Private Transport (Lighter Green)
-            'rgba(255, 255, 0, 0.5)', // Public Transport (Yellow)
-            'rgba(255, 165, 0, 0.5)', // Food (Orange)
-            'rgba(255, 0, 0, 0.5)' // Flight (Red)
+            'rgba(129, 30, 34)',  // Home (Dark Red)
+            'rgba(10, 28, 45)',   // Private Transport (Dark Blue)
+            'rgba(193, 131, 4)',  // Public Transport (Dark Yellow)
+            'rgba(252, 194, 183)',// Food (Light Pink)
+            'rgba(225, 94, 100)', // Flight (Red)
           ],
-          borderColor: [
-            'rgba(0, 255, 0, 1)', // Home (Green)
-            'rgba(0, 200, 0, 1)', // Private Transport (Lighter Green)
-            'rgba(255, 255, 0, 1)', // Public Transport (Yellow)
-            'rgba(255, 165, 0, 1)', // Food (Orange)
-            'rgba(255, 0, 0, 1)' // Flight (Red)
-          ],
-          borderWidth: 1
-        }]
+          /*borderColor: [
+           'rgba(129, 30, 34, 1)',  // Home (Dark Red)
+            'rgba(10, 28, 45, 1)',   // Private Transport (Dark Blue)
+            'rgba(193, 131, 4, 1)',  // Public Transport (Dark Yellow)
+            'rgba(252, 194, 183, 1)',// Food (Light Pink)
+            'rgba(225, 94, 100, 1)', // Flight (Red)
+          ],*/
+          
+          borderWidth: 1,
+        }],
       },
       options: {
         scales: {
           x: {
-            beginAtZero: true
+            beginAtZero: true,
           },
           y: {
             beginAtZero: true,
             grid: {
               display: false, // Hide horizontal grid lines
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     });
 
-    new ChartJS(ctxPie, {
+    // Create new pie chart instance and save it in ref
+    pieChartRef.current = new ChartJS(ctxPie, {
       type: 'pie',
       data: {
         labels: ['Home', 'Private Transport', 'Public Transport', 'Food', 'Flight'],
@@ -110,16 +124,17 @@ const AnalyzePage = () => {
             footprintData.privateTransportFootprint || 0,
             footprintData.publicTransportFootprint || 0,
             footprintData.foodFootprint || 0,
-            footprintData.flightFootprint || 0
+            footprintData.flightFootprint || 0,
           ],
           backgroundColor: [
-            'rgba(0, 255, 0, 0.5)', // Home (Green)
-            'rgba(0, 200, 0, 0.5)', // Private Transport (Lighter Green)
-            'rgba(255, 255, 0, 0.5)', // Public Transport (Yellow)
-            'rgba(255, 165, 0, 0.5)', // Food (Orange)
-            'rgba(255, 0, 0, 0.5)' // Flight (Red)
-          ]
-        }]
+            'rgb(129, 30, 34)',   // Home (Dark Red)
+            'rgb(10, 28, 45)',    // Private Transport (Dark Blue)
+            'rgb(193, 131, 4)',   // Public Transport (Dark Yellow)
+            'rgb(252, 194, 183)', // Food (Light Pink)
+            'rgb(225, 94, 100)',  // Flight (Red)
+          ],
+          
+        }],
       },
       options: {
         responsive: true,
@@ -129,15 +144,24 @@ const AnalyzePage = () => {
           },
           tooltip: {
             callbacks: {
-              label: function(tooltipItem) {
+              label: function (tooltipItem) {
                 return `${tooltipItem.label}: ${tooltipItem.raw}`;
-              }
-            }
-          }
-        }
-      }
+              },
+            },
+          },
+        },
+      },
     });
 
+    // Clean up charts when the component is unmounted
+    return () => {
+      if (barChartRef.current) {
+        barChartRef.current.destroy();
+      }
+      if (pieChartRef.current) {
+        pieChartRef.current.destroy();
+      }
+    };
   }, [footprintData]);
 
   return (
@@ -145,10 +169,10 @@ const AnalyzePage = () => {
       <h1 className="text-2xl font-bold mb-4">Analyze Your Data</h1>
       <p className="mb-4 text-lg">Check out which area you should work on to reduce your footprint.</p>
       <div className="flex w-full h-[70vh]">
-        <div className="w-3/4 pr-2">
+        <div className="w-2/3 pr-2">
           <canvas id="barChart" className="w-full h-full"></canvas>
         </div>
-        <div className="w-1/4 pl-2">
+        <div className="w-1/3 pl-2">
           <canvas id="pieChart" className="w-full h-full"></canvas>
         </div>
       </div>

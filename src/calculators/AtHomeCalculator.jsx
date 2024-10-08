@@ -97,7 +97,7 @@ const AtHomeCalculator = ({ setFootprint }) => {
 
   return (
     <div className="container mx-auto p-4 bg-white w-[900px] rounded-lg mt-5">
-      <h1 className="text-2xl font-bold mb-4 text-center">At Home</h1>
+      <h1 className="text-xl font-bold mb-4 text-center">At Home</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4 flex items-center">
           <label className="block mb-2 w-1/3 text-lg">Electricity:</label>

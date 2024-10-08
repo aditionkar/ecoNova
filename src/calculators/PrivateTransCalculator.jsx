@@ -132,7 +132,7 @@ const PrivateTransportCalculator = ({ setFootprint }) => {  //Added
 
   return (
     <div className="container mx-auto p-4 bg-white w-[900px] rounded-lg mt-5">
-      <h1 className="text-2xl font-bold mb-4 text-center">Private Transport </h1>
+      <h1 className="text-xl font-bold mb-4 text-center">Private Transport </h1>
       <form onSubmit={handleSubmit}>
         {renderVehicleForm(car1, setCar1, 'Car 1')}
         {renderVehicleForm(car2, setCar2, 'Car 2')}

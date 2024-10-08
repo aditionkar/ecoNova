@@ -36,13 +36,13 @@ const CarbonCredits = () => {
 
       // Categorize the totalFootprint into levels
       let footprintLevel = '';
-      if (total <= 100) {
+      if (total <= 200) {
         footprintLevel = 'Level 1 (Least Emissions)';
-      } else if (total <= 200) {
-        footprintLevel = 'Level 2';
-      } else if (total <= 300) {
-        footprintLevel = 'Level 3';
       } else if (total <= 400) {
+        footprintLevel = 'Level 2';
+      } else if (total <= 600) {
+        footprintLevel = 'Level 3';
+      } else if (total <= 800) {
         footprintLevel = 'Level 4';
       } else {
         footprintLevel = 'Level 5 (Most Emissions)';

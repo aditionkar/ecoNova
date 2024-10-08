@@ -59,11 +59,14 @@ const TotalCarbonFootprint = () => {
       <h1 className="text-2xl font-bold mb-4">Total Carbon Footprint Calculator</h1>
 
       <div className="mb-8">
+      
+      
         <AtHomeCalculator setFootprint={setHomeFootprint} />
         <PrivateTransportCalculator setFootprint={setPrivateTransportFootprint} />
         <PublicTransportCalculator setFootprint={setPublicTransportFootprint} />
         <FoodCalculator setFootprint={setFoodFootprint} />
         <FlightCalculator setFootprint={setFlightFootprint} />
+        
       </div>
 
       <div className="mt-4 p-4 bg-green-100">
