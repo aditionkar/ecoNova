@@ -105,7 +105,7 @@ const PublicTransportCalculator = ({ setFootprint }) => {  //Added
         {/* Submit Button */}
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded mx-auto block"
+          className="bg-lime-700 hover:bg-lime-600 text-white p-3 rounded-md w-full font-medium transition-all duration-150 ease-in-out shadow-sm focus:outline-none ring-2 ring-offset-2 ring-lime-500"
         >
           Calculate Carbon Footprint
         </button>

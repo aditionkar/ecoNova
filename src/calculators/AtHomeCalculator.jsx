@@ -218,7 +218,7 @@ const AtHomeCalculator = ({ setFootprint }) => {
         </div>
 
         <div className="flex justify-center mb-4">
-          <button type="submit" className="bg-blue-600 text-white p-2 rounded w-auto">
+          <button type="submit" className="bg-lime-700 hover:bg-lime-600 text-white p-3 rounded-md w-full font-medium transition-all duration-150 ease-in-out shadow-sm focus:outline-none ring-2 ring-offset-2 ring-lime-500">
             Calculate Carbon Footprint
           </button>
         </div>

@@ -5,12 +5,18 @@ export const FootprintContext = createContext();
 
 // Provider component
 export const FootprintProvider = ({ children }) => {
+  // Footprint state
   const [homeFootprint, setHomeFootprint] = useState(0);
   const [privateTransportFootprint, setPrivateTransportFootprint] = useState(0);
   const [publicTransportFootprint, setPublicTransportFootprint] = useState(0);
   const [foodFootprint, setFoodFootprint] = useState(0);
   const [flightFootprint, setFlightFootprint] = useState(0);
   const [totalFootprint, setTotalFootprint] = useState(0);
+
+  // Authentication state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [userInfo,setUserInfo] = useState({});
 
   // Calculate total footprint
   const calculateTotalFootprint = () => {
@@ -39,8 +45,15 @@ export const FootprintProvider = ({ children }) => {
       setFoodFootprint(storedData.foodFootprint);
       setFlightFootprint(storedData.flightFootprint);
     }
+
+    const storedAuthData = JSON.parse(localStorage.getItem('authData'));
+    if (storedAuthData) {
+      setIsLoggedIn(storedAuthData.isLoggedIn);
+      setUsername(storedAuthData.username);
+    }
   }, []);
 
+  // Save footprint data to local storage
   useEffect(() => {
     const footprintData = {
       homeFootprint,
@@ -52,6 +65,27 @@ export const FootprintProvider = ({ children }) => {
     };
     localStorage.setItem('footprintData', JSON.stringify(footprintData));
   }, [homeFootprint, privateTransportFootprint, publicTransportFootprint, foodFootprint, flightFootprint, totalFootprint]);
+
+  {/*// Save authentication data to local storage
+  useEffect(() => {
+    const authData = {
+      isLoggedIn,
+      username
+    };
+    localStorage.setItem('authData', JSON.stringify(authData));
+  }, [isLoggedIn, username]);
+
+  // Login function
+  const login = (name) => {
+    setIsLoggedIn(true);
+    setUsername(name);
+  };
+
+  // Logout function
+  const logout = () => {
+    setIsLoggedIn(false);
+    setUsername('');
+  };*/}
 
   return (
     <FootprintContext.Provider
@@ -66,7 +100,14 @@ export const FootprintProvider = ({ children }) => {
         setFoodFootprint,
         flightFootprint,
         setFlightFootprint,
-        totalFootprint
+        totalFootprint,
+        isLoggedIn,
+        //login,
+        //logout,
+        username,
+        setUsername,
+        userInfo,
+        setUserInfo
       }}
     >
       {children}

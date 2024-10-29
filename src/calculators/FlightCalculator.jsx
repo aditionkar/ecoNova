@@ -89,7 +89,7 @@ const FlightCalculator = ({ setFootprint }) => {  //Added
             <button
               type="button"
               onClick={() => removeFlight(index)}
-              className="bg-red-500 text-white p-2 rounded"
+              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md font-medium transition-all duration-150 ease-in-out shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
             >
               Remove Flight
             </button>
@@ -98,13 +98,13 @@ const FlightCalculator = ({ setFootprint }) => {  //Added
         <button
           type="button"
           onClick={addFlight}
-          className="bg-green-600 text-white p-2 rounded mb-4"
+          className="bg-gray-800 hover:bg-gray-900 text-white py-2 px-4 rounded-md mb-4 font-medium transition-all duration-150 ease-in-out shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
         >
           Add Another Flight
         </button>
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded mx-auto block"
+          className="bg-lime-700 hover:bg-lime-600 text-white p-3 rounded-md w-full font-medium transition-all duration-150 ease-in-out shadow-sm focus:outline-none ring-2 ring-offset-2 ring-lime-500"
         >
           Calculate Carbon Footprint
         </button>

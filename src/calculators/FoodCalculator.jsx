@@ -12,6 +12,7 @@ const FoodCalculator = ({ setFootprint }) => {     //Added
     eggs: { amount: '', unit: 'dozen' },
     vegetables: { amount: '', unit: 'kg' },
     fruits: { amount: '', unit: 'kg' },
+    rice: { amount: '', unit: 'kg' },
   });
 
   const [footprints, setFootprints] = useState({});
@@ -26,6 +27,7 @@ const FoodCalculator = ({ setFootprint }) => {     //Added
     eggs: 4.8, // kg CO₂ per dozen
     vegetables: 0.5,
     fruits: 0.8,
+    rice: 1.6,
   };
 
   // Convert liters to kg for milk if needed
@@ -119,7 +121,7 @@ const FoodCalculator = ({ setFootprint }) => {     //Added
         {/* Submit Button */}
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded mx-auto block"
+          className="bg-lime-700 hover:bg-lime-600 text-white p-3 rounded-md w-full font-medium transition-all duration-150 ease-in-out shadow-sm focus:outline-none ring-2 ring-offset-2 ring-lime-500"
         >
           Calculate Carbon Footprint
         </button>

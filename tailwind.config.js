@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        play: ['Play', 'sans-serif'], // Your custom font family
+      },
+    },
   },
   plugins: [],
 }

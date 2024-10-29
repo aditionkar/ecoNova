@@ -18,6 +18,11 @@ import FoodCalcPage from "./pages/FoodCalcPage";
 import FlightCalcPage from "./pages/FlightCalcPage";
 import { FootprintProvider } from "./contexts/FootprintContext";
 import CalculatorsNavPage from "./pages/CalculatorsNavPage";
+import Compare from "./pages/Compare";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import Footer from "./components/Footer";
+
 
 
 
@@ -30,6 +35,8 @@ export default function App() {
         <Navbar/>
           <Routes>
             <Route path="/" element={<HomePage />}/>
+            <Route path="/Login" element={<LoginPage/>}/>
+            <Route path="/Register" element={<RegisterPage/>}/>
             <Route path="/Credits" element={<CreditsPage />}/>
             <Route path="/Analyze" element={<AnalyzePage />}/>
             <Route path="/AtHome" element={<AtHomeCalcPage />}/>
@@ -38,8 +45,9 @@ export default function App() {
             <Route path="/Food" element={<FoodCalcPage />}/>
             <Route path="/Flight" element={<FlightCalcPage />}/>
             <Route path="/Calculate" element={<CalculatorsNavPage />}/>
-
-</Routes>
+            <Route path="/Compare" element={<Compare />}/>
+          </Routes>
+        <Footer/>
 </BrowserRouter>
 
 </div>
