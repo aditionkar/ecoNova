@@ -10,8 +10,7 @@ import "tailwindcss/tailwind.css";
 import { useContext } from "react";
 import { FootprintContext } from "../contexts/FootprintContext";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+
 
 // Register necessary scales, controller, and elements for bar charts
 Chart.register(CategoryScale, LinearScale, BarController, BarElement);
@@ -19,7 +18,7 @@ Chart.register(CategoryScale, LinearScale, BarController, BarElement);
 const CarbonCredits = () => {
   const [showFootprint, setShowFootprint] = useState(false);
   const chartRef = useRef(null);
-  const myChartRef = useRef(null); // Ref to store the chart instance
+  const myChartRef = useRef(null); 
   const [totalFootprint, setTotalFootprint] = useState(null);
   const [level, setLevel] = useState("");
   const [errormsg, setErrormsg] = useState("");

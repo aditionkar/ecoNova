@@ -15,7 +15,7 @@ function Nav() {
 
         {/* Private transport link */}
         <Link to="/PrivTrans">
-          <div className='w-32 h-32 bg-[#8cf03b] bg-opacity-80 border-black border-[2px] text-white mx-4 p-2 rounded shadow-lg shadow-green-700 hover:shadow-2xl hover:shadow-green-700 hover:scale-105 transition-all duration-300 cursor-pointer font-bold flex items-center justify-center'>
+          <div className='w-32 h-32 bg-[#8cf03b] border-black border-[2px] text-white mx-4 p-2 rounded shadow-lg shadow-green-700 hover:shadow-2xl hover:shadow-green-700 hover:scale-105 transition-all duration-300 cursor-pointer font-bold flex items-center justify-center'>
             <img src="/private.png" alt="Private transport" className="w-20 h-20" />
           </div>
         </Link>

@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-const PrivateTransportCalculator = ({ setFootprint }) => {  //Added
+const PrivateTransportCalculator = ({ setFootprint }) => {
+  //Added
 
   const [privateTransportFootprint, setPrivateTransportFootprint] = useState(0); //Added
 
   const [car1, setCar1] = useState({
-    size: 'average',
-    fuelType: 'petrol',
-    distance: '',
-    unit: 'km',
+    size: "average",
+    fuelType: "petrol",
+    distance: "",
+    unit: "km",
   });
 
   const [car2, setCar2] = useState({
-    size: 'average',
-    fuelType: 'petrol',
-    distance: '',
-    unit: 'km',
+    size: "average",
+    fuelType: "petrol",
+    distance: "",
+    unit: "km",
   });
 
   const [motorcycle, setMotorcycle] = useState({
-    size: 'average',
-    fuelType: 'petrol',
-    distance: '',
-    unit: 'km',
+    size: "average",
+    fuelType: "petrol",
+    distance: "",
+    unit: "km",
   });
 
   const [carbonFootprint, setCarbonFootprint] = useState(null);
@@ -36,13 +37,14 @@ const PrivateTransportCalculator = ({ setFootprint }) => {  //Added
     motorcycle: { small: 0.08, average: 0.1, big: 0.15 },
   };
 
-  const convertToKm = (distance, unit) => (unit === 'miles' ? distance * 1.60934 : distance);
+  const convertToKm = (distance, unit) =>
+    unit === "miles" ? distance * 1.60934 : distance;
 
   const calculateFootprint = () => {
     const vehicles = [
-      { label: 'Car 1', data: car1 },
-      { label: 'Car 2', data: car2 },
-      { label: 'Motorcycle', data: motorcycle },
+      { label: "Car 1", data: car1 },
+      { label: "Car 2", data: car2 },
+      { label: "Motorcycle", data: motorcycle },
     ];
 
     let totalFootprint = 0;
@@ -53,7 +55,7 @@ const PrivateTransportCalculator = ({ setFootprint }) => {  //Added
       if (data.distance) {
         let factor;
         if (data === motorcycle) {
-          factor = emissionFactors['motorcycle'][data.size];
+          factor = emissionFactors["motorcycle"][data.size];
         } else {
           factor = emissionFactors[data.fuelType][data.size];
         }
@@ -69,7 +71,8 @@ const PrivateTransportCalculator = ({ setFootprint }) => {  //Added
     setPrivateTransportFootprint(totalFootprint.toFixed(2)); //Added
   };
 
-  useEffect(() => {        //Added
+  useEffect(() => {
+    //Added
     setFootprint(privateTransportFootprint);
   }, [privateTransportFootprint, setFootprint]);
 
@@ -99,7 +102,9 @@ const PrivateTransportCalculator = ({ setFootprint }) => {  //Added
           <label className="block mb-2 ml-2">Fuel Type:</label>
           <select
             value={vehicle.fuelType}
-            onChange={(e) => setVehicle({ ...vehicle, fuelType: e.target.value })}
+            onChange={(e) =>
+              setVehicle({ ...vehicle, fuelType: e.target.value })
+            }
             className="border p-2 mb-2 bg-slate-100 rounded"
           >
             <option value="petrol">Petrol</option>
@@ -114,7 +119,9 @@ const PrivateTransportCalculator = ({ setFootprint }) => {  //Added
             type="number"
             placeholder="Enter distance"
             value={vehicle.distance}
-            onChange={(e) => setVehicle({ ...vehicle, distance: e.target.value })}
+            onChange={(e) =>
+              setVehicle({ ...vehicle, distance: e.target.value })
+            }
             className="border p-2 mb-2 mr-2 bg-slate-100 rounded"
           />
           <select
@@ -134,18 +141,23 @@ const PrivateTransportCalculator = ({ setFootprint }) => {  //Added
     <div className="container mx-auto p-4 bg-white w-[900px] rounded-lg mt-5">
       <h1 className="text-xl font-bold mb-4 text-center">Private Transport </h1>
       <form onSubmit={handleSubmit}>
-        {renderVehicleForm(car1, setCar1, 'Car 1')}
-        {renderVehicleForm(car2, setCar2, 'Car 2')}
-        {renderVehicleForm(motorcycle, setMotorcycle, 'Motorcycle')}
+        {renderVehicleForm(car1, setCar1, "Car 1")}
+        {renderVehicleForm(car2, setCar2, "Car 2")}
+        {renderVehicleForm(motorcycle, setMotorcycle, "Motorcycle")}
 
-        <button type="submit" className="bg-lime-700 hover:bg-lime-600 text-white p-3 rounded-md w-full font-medium transition-all duration-150 ease-in-out shadow-sm focus:outline-none ring-2 ring-offset-2 ring-lime-500">
+        <button
+          type="submit"
+          className="bg-lime-700 hover:bg-lime-600 text-white p-3 rounded-md w-full font-medium transition-all duration-150 ease-in-out shadow-sm focus:outline-none ring-2 ring-offset-2 ring-lime-500"
+        >
           Calculate Carbon Footprint
         </button>
       </form>
 
       {carbonFootprint !== null && (
         <div className="mt-4">
-          <h2 className="text-lg font-bold mb-4 text-center">Carbon Footprint Breakdown</h2>
+          <h2 className="text-lg font-bold mb-4 text-center">
+            Carbon Footprint Breakdown
+          </h2>
           <table className="table-auto mt-4 mx-auto">
             <thead>
               <tr>
@@ -154,15 +166,21 @@ const PrivateTransportCalculator = ({ setFootprint }) => {  //Added
               </tr>
             </thead>
             <tbody>
-              {Object.entries(individualFootprints).map(([vehicle, footprint]) => (
-                <tr key={vehicle}>
-                  <td className="border px-4 py-2 bg-slate-100">{vehicle}</td>
-                  <td className="border px-4 py-2 bg-slate-100">{footprint}</td>
-                </tr>
-              ))}
+              {Object.entries(individualFootprints).map(
+                ([vehicle, footprint]) => (
+                  <tr key={vehicle}>
+                    <td className="border px-4 py-2 bg-slate-100">{vehicle}</td>
+                    <td className="border px-4 py-2 bg-slate-100">
+                      {footprint}
+                    </td>
+                  </tr>
+                )
+              )}
               <tr>
                 <td className="border px-4 py-2 font-bold">Total</td>
-                <td className="border px-4 py-2 font-bold">{carbonFootprint} kg CO₂</td>
+                <td className="border px-4 py-2 font-bold">
+                  {carbonFootprint} kg CO₂
+                </td>
               </tr>
             </tbody>
           </table>

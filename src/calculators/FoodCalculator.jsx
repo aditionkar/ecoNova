@@ -126,6 +126,7 @@ const FoodCalculator = ({ setFootprint }) => {     //Added
           Calculate Carbon Footprint
         </button>
       </form>
+      
 
       {carbonFootprint !== null && (
         <div className="mt-4">

@@ -18,10 +18,10 @@ import FoodCalcPage from "./pages/FoodCalcPage";
 import FlightCalcPage from "./pages/FlightCalcPage";
 import { FootprintProvider } from "./contexts/FootprintContext";
 import CalculatorsNavPage from "./pages/CalculatorsNavPage";
-import Compare from "./pages/Compare";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Footer from "./components/Footer";
+import ComparePage from "./pages/Compare";
 
 
 
@@ -45,7 +45,7 @@ export default function App() {
             <Route path="/Food" element={<FoodCalcPage />}/>
             <Route path="/Flight" element={<FlightCalcPage />}/>
             <Route path="/Calculate" element={<CalculatorsNavPage />}/>
-            <Route path="/Compare" element={<Compare />}/>
+            <Route path="/Compare" element={<ComparePage />}/>
           </Routes>
         <Footer/>
 </BrowserRouter>

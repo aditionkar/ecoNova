@@ -66,7 +66,7 @@ const Goal = () => {
         targets to earn rewards!
       </p>
 
-      {/* Range Inputs with Enhanced Styling */}
+      
       {[
         {
           label: "Home Footprint",

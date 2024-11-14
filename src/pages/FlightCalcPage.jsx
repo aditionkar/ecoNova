@@ -56,10 +56,10 @@ const FlightCalcPage = () => {
   return (
     <div className="container mt-4 mx-auto p-6 md:p-10 bg-[#D3E4CD] rounded-xl shadow-xl">
       <Nav/>
-      {/*<h1 className="text-2xl font-bold mb-4">Flight Carbon Footprint Calculator</h1> */}
+      
 
       <div className="mb-8">
-        {/* Flight footprint input component */}
+        
         <FlightCalculator setFootprint={setFlightFootprint} />
       </div>
 
